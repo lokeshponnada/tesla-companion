@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.wear.widget.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:padding="@dimen/box_inset_layout_padding"
+    tools:context=".MainActivityWear"
+    tools:deviceIds="wear">
+
+    <RelativeLayout
+        android:padding="@dimen/general_padding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:boxedEdges="all"
+        tools:ignore="MissingPrefix">
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@drawable/tesla"
+            android:layout_width="64dp"
+            android:layout_height="64dp"/>
+
+        <ImageButton
+            android:id="@+id/lock_unlock_btn"
+            android:background="?android:selectableItemBackground"
+            android:layout_gravity="top|start"
+            android:layout_height="@dimen/dp_50"
+            android:layout_width="@dimen/dp_50"
+            android:src="@drawable/ic_lock_24dp" />
+
+        <ImageButton
+            android:id="@+id/frunk_btn"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/frunk_30px" />
+
+        <ImageButton
+            android:id="@+id/charge_unlock_btn"
+            android:background="?android:selectableItemBackground"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_height="@dimen/dp_50"
+            android:layout_width="@dimen/dp_50"
+            android:src="@drawable/ic_power_24dp" />
+
+        <ImageButton
+            android:id="@+id/climate_btn"
+            android:background="?android:selectableItemBackground"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_height="@dimen/dp_50"
+            android:layout_width="@dimen/dp_50"
+            android:src="@drawable/climate_on" />
+
+    </RelativeLayout>
+
+</androidx.wear.widget.BoxInsetLayout>

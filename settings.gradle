@@ -1,0 +1,2 @@
+include ':teslacompanion', ':teslawatch', ':teslacore'
+rootProject.name='TeslaCompanion'
