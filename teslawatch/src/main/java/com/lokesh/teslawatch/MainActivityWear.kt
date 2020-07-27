@@ -3,7 +3,6 @@ package com.lokesh.teslawatch
 import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import com.lokesh.teslacore.data.GenericResponse
 import com.lokesh.teslacore.repository.VehicleRepository
@@ -29,7 +28,11 @@ class MainActivityWear : WearableActivity() {
 
     private fun setListeners(){
 
-        lock_unlock_btn.setOnClickListener { GlobalScope.launch { unlockVehicle() } }
+        wake_btn.setOnClickListener { GlobalScope.launch { wakeupVehicle() } }
+
+        lock_btn.setOnClickListener { GlobalScope.launch { lockVehicle() } }
+
+        unlock_btn.setOnClickListener { GlobalScope.launch { unlockVehicle() } }
 
         frunk_btn.setOnClickListener { GlobalScope.launch { openFrunk() } }
 
@@ -41,7 +44,7 @@ class MainActivityWear : WearableActivity() {
 
 
     private suspend fun wakeupVehicle() = withContext(Dispatchers.IO){
-        val response = VehicleRepository.wakeUpVehicle()
+        handleResponse(OPERATION.WAKEUP_VEHICLE,VehicleRepository.wakeUpVehicle())
     }
 
     private suspend fun lockVehicle() = withContext(Dispatchers.IO){
@@ -86,6 +89,7 @@ class MainActivityWear : WearableActivity() {
     }
 
     enum class OPERATION {
+        WAKEUP_VEHICLE,
         LOCK_VEHICLE,
         UNLOCK_VEHICLE,
         OPEN_FRUNK,

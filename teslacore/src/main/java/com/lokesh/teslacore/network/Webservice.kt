@@ -1,14 +1,18 @@
 package com.lokesh.teslacore.network
 
 import com.lokesh.teslacore.data.GenericResponse
+import com.lokesh.teslacore.data.LoginResponse
 import com.lokesh.teslacore.data.OwnedVehiclesResponse
-import com.lokesh.teslacore.data.WakeUpResponse
 import retrofit2.http.*
 
 interface Webservice {
 
+    @FormUrlEncoded
+    @POST("oauth/token")
+    suspend fun login(@Field("email") email:String,@Field("password") password:String,  @Field("client_secret") clientSecret:String, @Field("client_id") clientId:String, @Field("grant_type") grantType:String ): LoginResponse
+
     @POST("1/vehicles/{id}/wake_up")
-    suspend fun wakeUpVehicle(@Path("id") id:String): WakeUpResponse
+    suspend fun wakeUpVehicle(@Path("id") id:String): GenericResponse
 
     @GET("1/vehicles")
     suspend fun getOwnedVehicles(): OwnedVehiclesResponse
@@ -34,6 +38,9 @@ interface Webservice {
 
     @POST("1/vehicles/{id}/command/auto_conditioning_stop")
     suspend fun turnOffClimate(@Path("id") id:String): GenericResponse
+
+    @POST("1/vehicles/{id}/command/honk_horn")
+    suspend fun honkHorn(@Path("id") id:String): GenericResponse
 
     @FormUrlEncoded
     @POST("1/vehicles/{id}/command/remote_seat_heater_request")

@@ -10,55 +10,91 @@
     tools:context=".MainActivityWear"
     tools:deviceIds="wear">
 
-    <RelativeLayout
-        android:padding="@dimen/general_padding"
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp32"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:boxedEdges="all"
-        tools:ignore="MissingPrefix">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:background="@drawable/tesla"
-            android:layout_width="64dp"
-            android:layout_height="64dp"/>
+            android:layout_width="@dimen/d48"
+            android:layout_height="48dp"
+            android:contentDescription="@string/tesla_icon" />
 
-        <ImageButton
-            android:id="@+id/lock_unlock_btn"
-            android:background="?android:selectableItemBackground"
-            android:layout_gravity="top|start"
-            android:layout_height="@dimen/dp_50"
-            android:layout_width="@dimen/dp_50"
-            android:src="@drawable/ic_lock_24dp" />
 
-        <ImageButton
-            android:id="@+id/frunk_btn"
-            android:layout_width="@dimen/dp_50"
-            android:layout_height="@dimen/dp_50"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:background="?android:selectableItemBackground"
-            android:src="@drawable/frunk_30px" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/charge_unlock_btn"
-            android:background="?android:selectableItemBackground"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_height="@dimen/dp_50"
-            android:layout_width="@dimen/dp_50"
-            android:src="@drawable/ic_power_24dp" />
+            <ImageButton
+                android:id="@+id/wake_btn"
+                android:background="?android:selectableItemBackground"
+                android:layout_gravity="top|start"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_50"
+                android:layout_width="@dimen/dp_50"
+                android:src="@drawable/ic_refresh_24dp"
+                android:contentDescription="@string/wake_up_device" />
 
-        <ImageButton
-            android:id="@+id/climate_btn"
-            android:background="?android:selectableItemBackground"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_height="@dimen/dp_50"
-            android:layout_width="@dimen/dp_50"
-            android:src="@drawable/climate_on" />
+            <ImageButton
+                android:id="@+id/unlock_btn"
+                android:background="?android:selectableItemBackground"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_50"
+                android:layout_width="@dimen/dp_50"
+                android:src="@drawable/ic_lock_open_24dp"
+                android:contentDescription="@string/lock_vehicle" />
 
-    </RelativeLayout>
+            <ImageButton
+                android:id="@+id/lock_btn"
+                android:background="?android:selectableItemBackground"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_50"
+                android:layout_width="@dimen/dp_50"
+                android:src="@drawable/ic_lock_24dp"
+                android:contentDescription="@string/lock_vehicle" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxedEdges="all"
+            tools:ignore="MissingPrefix">
+
+            <ImageButton
+                android:id="@+id/frunk_btn"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/frunk_30px"
+                android:contentDescription="@string/open_frunk" />
+
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/charge_unlock_btn"
+                android:background="?android:selectableItemBackground"
+                android:layout_height="@dimen/dp_50"
+                android:layout_width="@dimen/dp_50"
+                android:src="@drawable/ic_power_24dp"
+                android:contentDescription="@string/open_charge_port" />
+
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/climate_btn"
+                android:background="?android:selectableItemBackground"
+                android:layout_height="@dimen/dp_50"
+                android:layout_width="@dimen/dp_50"
+                android:src="@drawable/climate_on"
+                android:contentDescription="@string/turn_on_climate" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.wear.widget.BoxInsetLayout>

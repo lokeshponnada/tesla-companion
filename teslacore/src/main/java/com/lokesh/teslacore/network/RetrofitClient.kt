@@ -11,13 +11,10 @@ class RetrofitClient{
 
     companion object{
 
-
-        private val logClient = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-
         private val client: OkHttpClient =
             OkHttpClient.Builder().addInterceptor {
                 val newRequest: Request = it.request().newBuilder()
-                    .addHeader("Authorization", "Bearer YOUR_AUTH_TOKEN")
+                    .addHeader("Authorization", "Bearer AUTH_TOKEN_HERE")
                     .build()
                  it.proceed(newRequest)
             }.build()

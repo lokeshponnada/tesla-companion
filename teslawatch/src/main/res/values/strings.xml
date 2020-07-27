@@ -4,5 +4,19 @@
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
-    <string name="unlock_vehicle">Unlock Tesla!</string>
+    <string name="unlock_vehicle">Unlock Vehicle</string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="wake_up_device">Wake up Device</string>
+    <string name="lock_vehicle">Lock Vehicle</string>
+    <string name="open_frunk">Open Frunk</string>
+    <string name="open_charge_port">Open Charge Port</string>
+    <string name="turn_on_climate">Turn on climate</string>
+    <string name="tesla_icon">Tesla Icon</string>
 </resources>
