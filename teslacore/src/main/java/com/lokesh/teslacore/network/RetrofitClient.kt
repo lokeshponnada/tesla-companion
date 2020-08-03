@@ -1,6 +1,8 @@
 package com.lokesh.teslacore.network
 
 import com.lokesh.teslacore.BuildConfig
+import com.lokesh.teslacore.WatchApplication
+import com.lokesh.teslacore.repository.VehicleRepository
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
@@ -14,7 +16,7 @@ class RetrofitClient{
         private val client: OkHttpClient =
             OkHttpClient.Builder().addInterceptor {
                 val newRequest: Request = it.request().newBuilder()
-                    .addHeader("Authorization", "Bearer ${BuildConfig.AUTH_TOKEN}")
+                    .addHeader("Authorization", "Bearer ${WatchApplication.AUTH_TOKEN}")
                     .build()
                  it.proceed(newRequest)
             }.build()

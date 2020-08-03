@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivityWear : WearableActivity() {
+class MainActivityWear : BaseWearableActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,10 +93,6 @@ class MainActivityWear : WearableActivity() {
         runOnUiThread {
             toast("$operation $res")
         }
-    }
-
-    private fun toast(msg: String) {
-        Toast.makeText(this.applicationContext, msg, Toast.LENGTH_SHORT).show()
     }
 
     enum class OPERATION {
