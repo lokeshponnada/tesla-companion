@@ -3,6 +3,7 @@ package com.lokesh.teslacore.network
 import com.lokesh.teslacore.data.GenericResponse
 import com.lokesh.teslacore.data.LoginResponse
 import com.lokesh.teslacore.data.OwnedVehiclesResponse
+import com.lokesh.teslacore.data.WakeUpResponse
 import retrofit2.http.*
 
 interface Webservice {
@@ -12,7 +13,7 @@ interface Webservice {
     suspend fun login(@Field("email") email:String,@Field("password") password:String,  @Field("client_secret") clientSecret:String, @Field("client_id") clientId:String, @Field("grant_type") grantType:String ): LoginResponse
 
     @POST("1/vehicles/{id}/wake_up")
-    suspend fun wakeUpVehicle(@Path("id") id:String): GenericResponse
+    suspend fun wakeUpVehicle(@Path("id") id:String): WakeUpResponse
 
     @GET("1/vehicles")
     suspend fun getOwnedVehicles(): OwnedVehiclesResponse

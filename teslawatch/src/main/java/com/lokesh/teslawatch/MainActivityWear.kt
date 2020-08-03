@@ -5,6 +5,7 @@ import android.support.wearable.activity.WearableActivity
 import android.util.Log
 import android.widget.Toast
 import com.lokesh.teslacore.data.GenericResponse
+import com.lokesh.teslacore.data.WakeUpResponse
 import com.lokesh.teslacore.repository.VehicleRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -26,7 +27,7 @@ class MainActivityWear : WearableActivity() {
 
     }
 
-    private fun setListeners(){
+    private fun setListeners() {
 
         wake_btn.setOnClickListener { GlobalScope.launch { wakeupVehicle() } }
 
@@ -43,49 +44,59 @@ class MainActivityWear : WearableActivity() {
     }
 
 
-    private suspend fun wakeupVehicle() = withContext(Dispatchers.IO){
-        handleResponse(OPERATION.WAKEUP_VEHICLE,VehicleRepository.wakeUpVehicle())
+    private suspend fun wakeupVehicle() = withContext(Dispatchers.IO) {
+        handleResponse(OPERATION.WAKEUP_VEHICLE, VehicleRepository.wakeUpVehicle())
     }
 
-    private suspend fun lockVehicle() = withContext(Dispatchers.IO){
-        handleResponse(OPERATION.LOCK_VEHICLE,VehicleRepository.lockVehicle())
+    private suspend fun lockVehicle() = withContext(Dispatchers.IO) {
+        handleResponse(OPERATION.LOCK_VEHICLE, VehicleRepository.lockVehicle())
     }
 
-    private suspend fun unlockVehicle() = withContext(Dispatchers.IO){
-        handleResponse(OPERATION.UNLOCK_VEHICLE,VehicleRepository.unlockVehicle())
+    private suspend fun unlockVehicle() = withContext(Dispatchers.IO) {
+        handleResponse(OPERATION.UNLOCK_VEHICLE, VehicleRepository.unlockVehicle())
     }
 
-    private suspend fun openFrunk() = withContext(Dispatchers.IO){
-        handleResponse(OPERATION.OPEN_FRUNK,VehicleRepository.openFrunk())
+    private suspend fun openFrunk() = withContext(Dispatchers.IO) {
+        handleResponse(OPERATION.OPEN_FRUNK, VehicleRepository.openFrunk())
     }
 
-    private suspend fun stopCharging() = withContext(Dispatchers.IO){
+    private suspend fun stopCharging() = withContext(Dispatchers.IO) {
         handleResponse(OPERATION.STOP_CHARGING, VehicleRepository.stopCharging())
     }
 
-    private suspend fun openOrUnlockChargePort() = withContext(Dispatchers.IO){
-        handleResponse(OPERATION.UNLOCK_CHARGE_PORT,VehicleRepository.openOrUnlockChargePort())
+    private suspend fun openOrUnlockChargePort() = withContext(Dispatchers.IO) {
+        handleResponse(OPERATION.UNLOCK_CHARGE_PORT, VehicleRepository.openOrUnlockChargePort())
     }
 
-    private suspend fun turnOnClimate() = withContext(Dispatchers.IO){
-        handleResponse(OPERATION.TURN_ON_CLIMATE,VehicleRepository.turnOnClimate())
+    private suspend fun turnOnClimate() = withContext(Dispatchers.IO) {
+        handleResponse(OPERATION.TURN_ON_CLIMATE, VehicleRepository.turnOnClimate())
     }
 
-    private suspend fun turnOffClimate() = withContext(Dispatchers.IO){
-        handleResponse(OPERATION.TURN_OFF_CLIMATE,VehicleRepository.turnOffClimate())
+    private suspend fun turnOffClimate() = withContext(Dispatchers.IO) {
+        handleResponse(OPERATION.TURN_OFF_CLIMATE, VehicleRepository.turnOffClimate())
     }
 
-    private fun handleResponse(operation: OPERATION,response: GenericResponse){
-        Log.d("MainWearAct",response.toString())
-        val res = if (response.response.result )  "success" else "failure"
+    private fun handleResponse(operation: OPERATION, response: Any) {
+
+        var res = "N/A"
+
+        if (response is WakeUpResponse) {
+            if (response.error != null && response.error!!.isNotEmpty()) {
+                res = "Error Wakingup"
+            } else {
+                res = "Wakeup successful "
+            }
+        } else if (response is GenericResponse) {
+            res = if (response.response.result) "success" else "failure"
+        }
+
         runOnUiThread {
             toast("$operation $res")
         }
-
     }
 
-    private fun toast(msg:String){
-        Toast.makeText(this.applicationContext,msg,Toast.LENGTH_SHORT).show()
+    private fun toast(msg: String) {
+        Toast.makeText(this.applicationContext, msg, Toast.LENGTH_SHORT).show()
     }
 
     enum class OPERATION {

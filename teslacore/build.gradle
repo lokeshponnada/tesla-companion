@@ -24,6 +24,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'VEHICLE_ID', VEHICLE_ID
+        it.buildConfigField 'String', 'AUTH_TOKEN', AUTH_TOKEN
+    }
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8

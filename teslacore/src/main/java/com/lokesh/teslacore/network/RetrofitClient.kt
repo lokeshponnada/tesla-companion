@@ -1,8 +1,8 @@
 package com.lokesh.teslacore.network
 
+import com.lokesh.teslacore.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -14,7 +14,7 @@ class RetrofitClient{
         private val client: OkHttpClient =
             OkHttpClient.Builder().addInterceptor {
                 val newRequest: Request = it.request().newBuilder()
-                    .addHeader("Authorization", "Bearer AUTH_TOKEN_HERE")
+                    .addHeader("Authorization", "Bearer ${BuildConfig.AUTH_TOKEN}")
                     .build()
                  it.proceed(newRequest)
             }.build()
