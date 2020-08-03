@@ -2,13 +2,14 @@ package com.lokesh.teslawatch
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.support.wearable.activity.WearableActivity
 import android.util.Log
 import com.lokesh.teslacore.repository.VehicleRepository
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : WearableActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
